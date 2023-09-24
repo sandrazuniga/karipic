@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-danger">
+  <div class="container-fluid">
+     <%= link_to "KariPic", root_path, class:"navbar-brand color-danger" %>  <i class="fa-solid fa-camera-retro fa-2xl" style="color: #f5f061;"></i>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <li><%= link_to "Inicio", root_path, class:"nav-link tcolor" %> </li>
+        <li><%= link_to "Publicaciones", posts_path, class:"nav-link tcolor" %> </li>
+        </ul>
+        <ul class="navbar-nav ms-auto ">
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle tcolor text-end" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if user_signed_in? %>
+              <% if current_user.email %>
+                Hola <%= current_user.email %>
+              <% else %>
+                Hola <%= current_user.email %>
+            <% end %>
+            Inicia sesión / Registrate
+            <% end %>
+          </a>
+          <ul class="dropdown-menu pff ">
+            <% if user_signed_in? %>
+           <li><%= link_to "Editar Perfil", edit_user_registration_path, class:"dropdown-item tcolor" %></li>
+            <li><%= button_to "Cerrar Sesión", destroy_user_session_path, class:"dropdown-item tcolor", method: :delete %></li>
+            <% else %> 
+            <li><%= link_to "Iniciar Sesión", new_user_session_path, class:"dropdown-item tcolor" %></li>
+            <li><%= link_to "Registrarme", new_user_registration_path, class:"dropdown-item tcolor" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
